@@ -1,3 +1,4 @@
+/*
 document.addEventListener('DOMContentLoaded', function() {
     const slides = ['p1.jpg', 'p2.jpg','p3.jpg'];
     let currentSlide = 0;
