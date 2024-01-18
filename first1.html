@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>纪念日快乐！</title>
+    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"> <!-- FontAwesome 引入 -->
+  
+</head>
+<body>
+
+  <div id="snow-container"></div> <!-- 新增下雪效果的容器 -->
+  <!-- 音乐播放器 -->
+    <div id="music-player">
+        <audio controls>
+            <source src="your_song.mp3" type="audio/mpeg">
+            您的浏览器不支持音频播放。
+        </audio>
+    </div>
+  
+  <div id="anniversary-container">
+        <h1>我们的一周年纪念日快乐！</h1>
+        <div id="timer">
+            <p>自从我们在一起已经过去了：</p>
+            <span id="days">00</span>天
+            <span id="hours">00</span>小时
+            <span id="minutes">00</span>分钟
+            <span id="seconds">00</span>秒
+        </div>
+        <p id="message">愿我们的爱情永远美好，如同初见。</p>
+    
+    
+    <!-- 倒计时容器 -->
+    <div id="countdown-container">
+        <h2>距离我们的下一个重要日期还有：</h2>
+        <div id="countdown">
+            <span id="countdown-days">00</span>天
+            <span id="countdown-hours">00</span>小时
+            <span id="countdown-minutes">00</span>分钟
+            <span id="countdown-seconds">00</span>秒
+        </div>
+    </div>
+    
+    <!-- "下一页" 按钮 -->
+    <button onclick="location.href='slideshow.html'">下一页</button>
+    
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
