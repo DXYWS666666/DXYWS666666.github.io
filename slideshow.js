@@ -10,3 +10,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setInterval(nextSlide, 3000); // 每3秒切换照片
 });
+*/
