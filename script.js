@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setInterval(updateTimer, 1000);
   
-  // 创建雪花
+    // 创建雪花
     function createSnowflake() {
         const snowFlake = document.createElement('i');
         snowFlake.classList.add('fas', 'fa-snowflake');
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 每隔一段时间创建一个新的雪花
     setInterval(createSnowflake, 100);
   
-  // 设置下一个重要日期
+    // 设置下一个重要日期
     const nextImportantDate = new Date('2024-02-25'); // 修改为您的重要日期
 
     function updateCountdown() {
@@ -66,7 +66,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     setInterval(updateCountdown, 1000);
-  
-  
 });
-
