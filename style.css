@@ -6,69 +6,39 @@ body {
     padding: 20px;
 }
 
-#anniversary-container {
-    background-color: #fff3f8;
+#personal-container {
+    background-color: #ffffff;
     margin: auto;
     padding: 20px;
     border-radius: 10px;
-    width: 50%;
+    width: 80%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-#timer {
-    font-size: 1.5em;
-    margin: 20px 0;
+h1, h2 {
+    color: #005f73;
 }
 
-#timer span {
-    font-weight: bold;
-    color: #d6336c;
+section {
+    margin-bottom: 20px;
 }
 
-#message {
-    font-size: 1.2em;
-    margin-top: 20px;
-    color: #d6336c;
+ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-/* 剩余原有样式保持不变 */
-
-#hearts-container {
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 100px;
+li {
+    margin-bottom: 10px;
 }
 
-.heart {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background-color: pink;
-    transform: rotate(45deg);
-    transform-origin: bottom right;
+a {
+    color: #005f73;
+    text-decoration: none;
 }
 
-.heart:before,
-.heart:after {
-    content: '';
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background-color: pink;
-    border-radius: 50%;
-}
-
-.heart:before {
-    top: -50px;
-    left: 0;
-}
-
-.heart:after {
-    top: 0;
-    left: 50px;
+a:hover {
+    text-decoration: underline;
 }
 
 #snow-container {
@@ -86,21 +56,4 @@ body {
     bottom: 10px;
     left: 10px;
     z-index: 1001;
-}
-
-/* ... 现有样式 ... */
-
-button {
-    padding: 10px 20px;
-    background-color: #005f73;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-button:hover {
-    background-color: #003d5b;
 }
