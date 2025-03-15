@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>纪念日快乐！</title>
+    <title>张三的个人网站</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"> <!-- FontAwesome 引入 -->
 </head>
 <body>
-    <div id="snow-container"></div> <!-- 新增下雪效果的容器 -->
+    <div id="snow-container"></div> <!-- 下雪效果的容器 -->
 
     <!-- 音乐播放器 -->
     <div id="music-player">
@@ -17,27 +17,37 @@
         </audio>
     </div>
 
-    <div id="anniversary-container">
-        <h1>我们的一周年纪念日快乐！</h1>
-        <div id="timer">
-            <p>自从我们在一起已经过去了：</p>
-            <span id="days">00</span>天
-            <span id="hours">00</span>小时
-            <span id="minutes">00</span>分钟
-            <span id="seconds">00</span>秒
-        </div>
-        <p id="message">愿我们的爱情永远美好，如同初见。</p>
-
-        <!-- 倒计时容器 -->
-        <div id="countdown-container">
-            <h2>距离我们的下一个重要日期还有：</h2>
-            <div id="countdown">
-                <span id="countdown-days">00</span>天
-                <span id="countdown-hours">00</span>小时
-                <span id="countdown-minutes">00</span>分钟
-                <span id="countdown-seconds">00</span>秒
-            </div>
-        </div>
+    <div id="personal-container">
+        <h1>欢迎来到张三的个人网站</h1>
+        <section id="about">
+            <h2>关于我</h2>
+            <p>我是一名计算机专业的大学生，热爱编程和技术探索。我对Web开发、人工智能和数据科学等领域特别感兴趣。</p>
+        </section>
+        <section id="education">
+            <h2>教育背景</h2>
+            <p>本科：XX大学 计算机科学与技术专业 (2020-2024)</p>
+        </section>
+        <section id="skills">
+            <h2>技能</h2>
+            <ul>
+                <li>编程语言：JavaScript, Python, Java</li>
+                <li>Web开发：HTML, CSS, React</li>
+                <li>数据库：MySQL, MongoDB</li>
+                <li>其他：Git, Docker</li>
+            </ul>
+        </section>
+        <section id="projects">
+            <h2>项目经验</h2>
+            <ul>
+                <li><strong>个人博客网站</strong>：使用React和Node.js开发，支持用户注册、登录和文章发布。</li>
+                <li><strong>数据分析项目</strong>：使用Python和Pandas分析COVID-19数据，生成可视化报告。</li>
+            </ul>
+        </section>
+        <section id="contact">
+            <h2>联系方式</h2>
+            <p>邮箱：zhangsan@example.com</p>
+            <p>GitHub：<a href="https://github.com/zhangsan" target="_blank">github.com/zhangsan</a></p>
+        </section>
     </div>
 
     <script src="script.js"></script>
