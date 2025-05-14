@@ -28,7 +28,6 @@ body {
   background: var(--bg-color);
   color: var(--text-color);
   overflow-x: hidden;
-  cursor: none; /* 隐藏默认光标 */
 }
 
 /* 自定义光标 */
@@ -53,10 +52,7 @@ body {
   top: 0;
   left: 0;
   z-index: -2;
-}
-
-[v-cloak] {
-  display: none;
+  background-color: var(--bg-color);
 }
 
 .content {
@@ -526,6 +522,30 @@ nav .logo a {
   100% { background-position: 0 0; }
 }
 
+/* 雨滴效果 */
+.raindrop {
+  position: absolute;
+  top: -50px;
+  background-color: #9370db;
+  opacity: 0.2;
+  border-radius: 50%;
+  animation: rain 1.5s linear infinite;
+}
+
+@keyframes rain {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(calc(100vh - 50px));
+    opacity: 0;
+  }
+}
+
 /* 关于我区域样式 */
 .about .about-details {
   display: flex;
@@ -589,6 +609,7 @@ nav .logo a {
   transition: width 1.5s ease;
   position: relative;
   box-shadow: var(--neon-glow);
+  width: 0; /* 初始宽度为0，等待动画 */
 }
 
 .skill-percent-tip {
@@ -1579,20 +1600,5 @@ footer p {
 
   .modal-content {
     padding: 20px;
-  }
-}
-
-/* 新增动画和互动效果 */
-@keyframes rain {
-  0% {
-    opacity: 0;
-    transform: translateY(-100px);
-  }
-  70% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(100vh);
   }
 }
