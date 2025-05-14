@@ -226,17 +226,17 @@ document.addEventListener('DOMContentLoaded', function() {
           ],
           education: [
             {
-              period: '2020 - 至今',
+              period: '2025 - 至今',
               degree: '计算机科学硕士研究生',
               institution: '电子科技大学',
               description: '研究方向：深度学习安全、对抗样本生成与防御技术，智能系统鲁棒性分析。',
               courses: ['深度学习安全', '机器学习高级理论', '计算机视觉', '信息安全']
             },
             {
-              period: '2016 - 2020',
+              period: '2021 - 2025',
               degree: '计算机科学与技术学士',
               institution: '哈尔滨工程大学',
-              description: '主修课程包括数据结构、算法设计、机器学习基础和神经网络入门，获得校级优秀毕业生称号。',
+              description: '主修课程包括数据结构、算法设计、机器学习基础和神经网络。',
               courses: ['数据结构', '算法分析', '人工智能基础', '机器学习']
             }
           ],
