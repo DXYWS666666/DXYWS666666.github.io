@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人简介 | DXY</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- 添加Font Awesome图标库 -->
+    <!-- 确保Font Awesome加载正确 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- 添加Google字体 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,7 @@
     
     <div id="cursor-follower"></div>
     
-    <div id="app" v-cloak>
+    <div id="app">
         <!-- 导航栏 -->
         <nav>
             <div class="nav-content">
@@ -171,7 +171,7 @@
                     <span class="reveal-text">音乐收藏</span>
                 </div>
                 <div class="music-collection">
-                    <div class="music-card reveal" v-for="(song, index) in profile.favoriteSongs" :key="index" @mousemove="tiltCard" @mouseleave="resetTilt">
+                    <div class="music-card reveal" v-for="(song, index) in profile.favoriteSongs" :key="index">
                         <div class="album-cover" :style="{ backgroundImage: `url(${song.cover})` }">
                             <div class="vinyl-disk" :class="{'spinning': currentSong === index}"></div>
                             <div class="play-button" @click.stop="playSong(index)">
@@ -266,7 +266,7 @@
     </div>
 
     <!-- 引入外部库 -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.36/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.36/dist/vue.global.prod.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
