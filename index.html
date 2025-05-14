@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人简介 | 张明</title>
+    <title>个人简介 | DXY</title>
     <link rel="stylesheet" href="styles.css">
     <!-- 添加Font Awesome图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -11,14 +11,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- 添加动画库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body>
+    <!-- 粒子效果容器 -->
+    <div id="particles-js"></div>
+    
+    <div id="cursor-follower"></div>
+    
     <div id="app" v-cloak>
         <!-- 导航栏 -->
         <nav>
             <div class="nav-content">
                 <div class="logo">
-                    <a href="#">{{ profile.firstName }}<span>{{ profile.lastName }}</span></a>
+                    <a href="#" class="glitch-text" data-text="DXY">DXY</a>
                 </div>
                 <ul class="nav-links" :class="{ 'active': menuActive }">
                     <li><a href="#home" @click="scrollToSection('home')">首页</a></li>
@@ -36,21 +43,23 @@
 
         <!-- 首页区域 -->
         <section id="home" class="home">
-            <div class="home-content">
+            <div class="stars"></div>
+            <div class="twinkling"></div>
+            <div class="home-content text-center">
                 <div class="text">
-                    <div class="text-one">你好，我是</div>
-                    <div class="text-two">{{ profile.fullName }}</div>
-                    <div class="text-three">{{ profile.title }}</div>
-                    <div class="text-four">{{ profile.university }}</div>
+                    <div class="text-one animate__animated animate__fadeInDown">你好，我是</div>
+                    <div class="text-two animate__animated animate__fadeInDown animate__delay-1s">{{ profile.fullName }}</div>
+                    <div class="text-three animate__animated animate__fadeInDown animate__delay-2s">{{ profile.title }}</div>
+                    <div class="text-four animate__animated animate__fadeInDown animate__delay-3s">{{ profile.university }}</div>
                 </div>
-                <div class="buttons">
-                    <button @click="scrollToSection('contact')">联系我</button>
-                    <button @click="downloadCV">下载简历</button>
+                <div class="buttons animate__animated animate__fadeInUp animate__delay-4s">
+                    <button @click="scrollToSection('contact')" class="glow-on-hover">联系我</button>
+                    <button @click="downloadCV" class="glow-on-hover">下载简历</button>
                 </div>
             </div>
-            <div class="profile-image">
-                <div class="avatar-container">
-                    <img :src="profile.avatar" alt="个人头像">
+            <div class="profile-image animate__animated animate__zoomIn animate__delay-2s">
+                <div class="avatar-container" @mousemove="rotateAvatar">
+                    <img :src="profile.avatar" alt="个人头像" id="avatar-img">
                 </div>
             </div>
         </section>
@@ -59,25 +68,34 @@
         <section id="about" class="about">
             <div class="content">
                 <div class="title">
-                    <span>关于我</span>
+                    <span class="reveal-text">关于我</span>
                 </div>
                 <div class="about-details">
-                    <div class="text">
+                    <div class="text reveal">
                         <p v-html="profile.bio"></p>
                     </div>
-                    <div class="skills">
+                    <div class="skills reveal">
                         <h3>技能与专长</h3>
                         <ul class="skills-list">
                             <li v-for="(skill, index) in profile.skills" :key="index">
                                 <div class="skill-name">{{ skill.name }}</div>
                                 <div class="skill-bar">
-                                    <div class="skill-level" :style="{ width: skill.level + '%' }"></div>
+                                    <div class="skill-level" :style="{ width: skill.level + '%' }">
+                                        <span class="skill-percent-tip">{{ skill.level }}%</span>
+                                    </div>
                                 </div>
-                                <div class="skill-percent">{{ skill.level }}%</div>
                             </li>
                         </ul>
                     </div>
                 </div>
+            </div>
+            
+            <div class="floating-shapes">
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
             </div>
         </section>
 
@@ -85,10 +103,10 @@
         <section id="education" class="education">
             <div class="content">
                 <div class="title">
-                    <span>教育经历</span>
+                    <span class="reveal-text">教育经历</span>
                 </div>
                 <div class="timeline">
-                    <div class="timeline-item" v-for="(edu, index) in profile.education" :key="index">
+                    <div class="timeline-item reveal" v-for="(edu, index) in profile.education" :key="index" :class="{'from-left': index % 2 === 0, 'from-right': index % 2 !== 0}">
                         <div class="date">{{ edu.period }}</div>
                         <div class="details">
                             <h3>{{ edu.degree }}</h3>
@@ -107,20 +125,24 @@
         <section id="research" class="research">
             <div class="content">
                 <div class="title">
-                    <span>研究方向</span>
+                    <span class="reveal-text">研究方向</span>
                 </div>
                 <div class="research-areas">
-                    <div class="research-card" v-for="(research, index) in profile.research" :key="index" @click="showResearchDetails(index)">
+                    <div class="research-card reveal" v-for="(research, index) in profile.research" :key="index" @click="showResearchDetails(index)" @mousemove="glowEffect">
+                        <div class="research-glow"></div>
                         <div class="icon">
                             <i :class="research.icon"></i>
                         </div>
                         <h3>{{ research.title }}</h3>
                         <p>{{ research.brief }}</p>
+                        <div class="research-card-overlay">
+                            <span>点击查看详情</span>
+                        </div>
                     </div>
                 </div>
                 <!-- 研究详情弹窗 -->
                 <div class="modal" v-if="activeResearch !== null" @click.self="activeResearch = null">
-                    <div class="modal-content">
+                    <div class="modal-content animate__animated animate__zoomIn">
                         <span class="close" @click="activeResearch = null">&times;</span>
                         <h2>{{ profile.research[activeResearch].title }}</h2>
                         <p v-html="profile.research[activeResearch].description"></p>
@@ -135,32 +157,48 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- 3D悬浮元素 -->
+            <div class="floating-element element-1"></div>
+            <div class="floating-element element-2"></div>
+            <div class="floating-element element-3"></div>
         </section>
 
         <!-- 音乐收藏区域 -->
         <section id="music" class="music">
             <div class="content">
                 <div class="title">
-                    <span>音乐收藏</span>
+                    <span class="reveal-text">音乐收藏</span>
                 </div>
                 <div class="music-collection">
-                    <div class="music-card" v-for="(song, index) in profile.favoriteSongs" :key="index">
+                    <div class="music-card reveal" v-for="(song, index) in profile.favoriteSongs" :key="index" @mousemove="tiltCard" @mouseleave="resetTilt">
                         <div class="album-cover" :style="{ backgroundImage: `url(${song.cover})` }">
-                            <div class="play-button" @click="playSong(index)">
+                            <div class="vinyl-disk" :class="{'spinning': currentSong === index}"></div>
+                            <div class="play-button" @click.stop="playSong(index)">
                                 <i class="fas" :class="currentSong === index ? 'fa-pause' : 'fa-play'"></i>
                             </div>
                         </div>
                         <div class="song-info">
                             <h3>{{ song.title }}</h3>
                             <p>{{ song.artist }}</p>
-                            <div class="song-controls">
-                                <div class="progress-bar" v-if="currentSong === index">
+                            <div class="song-controls" v-if="currentSong === index">
+                                <div class="progress-bar">
                                     <div class="progress" :style="{ width: songProgress + '%' }"></div>
+                                </div>
+                                <div class="visualizer">
+                                    <div class="bar" v-for="i in 20" :key="i" :style="{height: getRandomHeight() + 'px'}"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <!-- 音符动画 -->
+            <div class="music-notes">
+                <i class="fas fa-music note-1"></i>
+                <i class="fas fa-music note-2"></i>
+                <i class="fas fa-music note-3"></i>
             </div>
         </section>
 
@@ -168,11 +206,11 @@
         <section id="contact" class="contact">
             <div class="content">
                 <div class="title">
-                    <span>联系我</span>
+                    <span class="reveal-text">联系我</span>
                 </div>
                 <div class="contact-details">
-                    <div class="contact-info">
-                        <div class="info-item" v-for="(contact, index) in profile.contactInfo" :key="index">
+                    <div class="contact-info reveal from-left">
+                        <div class="info-item" v-for="(contact, index) in profile.contactInfo" :key="index" @mouseover="pulseAnimation">
                             <div class="icon">
                                 <i :class="contact.icon"></i>
                             </div>
@@ -182,22 +220,26 @@
                             </div>
                         </div>
                     </div>
-                    <div class="contact-form">
+                    <div class="contact-form reveal from-right">
                         <h3>给我发消息</h3>
-                        <form @submit.prevent="submitForm">
+                        <form @submit.prevent="submitForm" class="glowing-border">
                             <div class="form-group">
                                 <input type="text" v-model="contactForm.name" placeholder="您的姓名" required>
+                                <span class="focus-border"><i></i></span>
                             </div>
                             <div class="form-group">
                                 <input type="email" v-model="contactForm.email" placeholder="您的邮箱" required>
+                                <span class="focus-border"><i></i></span>
                             </div>
                             <div class="form-group">
                                 <input type="text" v-model="contactForm.subject" placeholder="主题" required>
+                                <span class="focus-border"><i></i></span>
                             </div>
                             <div class="form-group">
                                 <textarea v-model="contactForm.message" placeholder="您的消息" required></textarea>
+                                <span class="focus-border"><i></i></span>
                             </div>
-                            <button type="submit" :disabled="formSubmitting">
+                            <button type="submit" :disabled="formSubmitting" class="neon-button">
                                 {{ formSubmitting ? '发送中...' : '发送消息' }}
                             </button>
                             <div class="form-status" v-if="formStatus">{{ formStatus }}</div>
@@ -209,9 +251,12 @@
 
         <!-- 页脚 -->
         <footer>
+            <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#222" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,144C384,160,480,160,576,138.7C672,117,768,75,864,69.3C960,64,1056,96,1152,106.7C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
             <div class="content">
                 <div class="social-links">
-                    <a v-for="(social, index) in profile.socialMedia" :key="index" :href="social.url" target="_blank">
+                    <a v-for="(social, index) in profile.socialMedia" :key="index" :href="social.url" target="_blank" class="social-icon">
                         <i :class="social.icon"></i>
                     </a>
                 </div>
@@ -220,8 +265,12 @@
         </footer>
     </div>
 
-    <!-- 引入Vue.js -->
+    <!-- 引入外部库 -->
     <script src="https://cdn.jsdelivr.net/npm/vue@3.2.36/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <!-- 引入自定义JS -->
     <script src="app.js"></script>
 </body>
